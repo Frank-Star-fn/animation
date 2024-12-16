@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>心跳</title>
+</head>
+
+<!-- 类似心跳的效果 -->
+
+<body>
+  <div class="wrap">
+    <div class="main relative scale-50">
+      <div class="group">
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+      </div>
+      <div class="group">
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+        <div class="circle-box"><div class="circle" /></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<style>
+
+.wrap {
+  background:black;
+}
+
+.main {
+  font-size: 50px;
+  font-weight: 600;
+  margin-top: 50px;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group {
+  animation: rotate 8s linear infinite;
+}
+
+.group .circle-box {
+  position: absolute;
+}
+
+.group .circle {
+  animation: move1 2s ease infinite;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #63f78a;
+  position: absolute;
+  perspective: 100px;
+  left: 50px;
+  top: -25px;
+}
+
+.group:nth-child(2) .circle {
+  animation: move2 2s ease infinite;
+} 
+
+.group .circle-box:first-child {
+  transform: rotate(45deg);
+}
+.group .circle-box:nth-child(2) {
+  transform: rotate(90deg);
+}
+.group .circle-box:nth-child(3) {
+  transform: rotate(135deg);
+}
+.group .circle-box:nth-child(4) {
+  transform: rotate(180deg);
+}
+.group .circle-box:nth-child(5) {
+  transform: rotate(225deg);
+}
+.group .circle-box:nth-child(6) {
+  transform: rotate(270deg);
+}
+.group .circle-box:nth-child(7) {
+  transform: rotate(315deg);
+}
+.group .circle-box:nth-child(8) {
+  transform: rotate(360deg);
+}
+
+/* .group .circle-box:nth-child(2) .circle {
+  animation-delay: 0.25s;
+  background: #5ff19f;
+}
+.group .circle-box:nth-child(3) .circle {
+  animation-delay: 0.5s;
+  background: #5deea8;
+}
+.group .circle-box:nth-child(4) .circle {
+  animation-delay: 0.75s;
+  background: #5cebb2;
+}
+.group .circle-box:nth-child(5) .circle {
+  animation-delay: 1s;
+  background: #5ae7bb;
+}
+.group .circle-box:nth-child(6) .circle {
+  animation-delay: 1.25s;
+  background: #58e4c3;
+}
+.group .circle-box:nth-child(7) .circle {
+  animation-delay: 1.5s;
+  background: #57e0cc;
+}
+.group .circle-box:nth-child(8) .circle {
+  animation-delay: 1.75s;
+  background: #56dcd3;
+} */
+
+@keyframes move1 {
+  0% {
+    transform: scale(1) translateX(0) rotate(0);
+    opacity: 0.8;
+  }
+  40% {
+    transform: scale(1.5) translateX(20px) ;
+    opacity: 0.8;
+  }
+}
+
+
+.relative {
+  position: relative;
+}
+
+.scale-50 {
+  transform: scale(.5);
+}
+
+
+</style>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>简单动画</title>
+</head>
+
+<body>
+  <div class="no-select" style="display: flex; align-items: center; justify-content: center;">
+    <div class="main">
+      <span>大大大</span>
+    </div>
+    <div class="loading">
+      <span>转转转</span>
+    </div>
+    <div class="jump">
+      <span>跳跳跳</span>
+    </div>
+  </div>
+</body>
+
+<style>
+.no-select {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+  user-select: none;         /* Standard syntax */
+}
+
+.main {
+  margin: 40px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgb(92, 216, 235); */
+  background: rgb(252 211 77);
+  color: rgb(180 83 9);
+  transition: transform 0.5s ease; /* 添加缓动过渡 */
+}
+.main:hover {
+  transform: scale(1.5);
+}
+
+.loading {
+  margin: 40px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgb(92, 216, 235); */
+  background: rgb(103 232 249);
+  color: rgb(21 94 117);
+}
+.loading:hover {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.jump {
+  margin: 40px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: rgb(92, 216, 235); */
+  background: rgb(163 230 53);
+  color: rgb(63 98 18);
+  border-radius: 50%;
+}
+.jump:hover {
+  animation: bounce 1s linear infinite;
+  /* animation: bounce 1s ease infinite; */
+  /* animation: bounce 1s ease-out infinite; */
+  /* animation: bounce 1s ease-in-out infinite; */
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+</style>
+</html>
