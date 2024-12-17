@@ -6,22 +6,33 @@
 	<title>Logo</title>
 </head>
 <body>
-	<div class="no-select">
+	<div class="no-select main">
 		<img src="电脑设置.svg">
 		<img src="手机设置.svg">
 		<img src="设置-办公－14.svg">
 		<img src="设置 (1).svg">
 		<img src="设置.svg">
 		
+		<img class="two-col" src="ship.svg">
+		<img src="star copy.svg">
+
 		<img src="bili.svg">
 		<img src="github.svg">
-		
-		<img src="ship.svg">
-		<img src="star copy.svg">
 	</div>
 </body>
 
 <style>
+.two-col {
+	grid-column: 1 / span 2;
+}
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 10px;
+	place-items: center;
+	min-width: 500px;
+}
 .no-select {
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none;    /* Firefox */
