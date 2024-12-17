@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烟雾光圈</title>
+    <style type="text/css">
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          width: 100vw;
+          height: 100vh;
+          box-sizing: border-box;
+        }
+
+        .container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+        }
+
+        .circle-area {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .circle {
+          position: relative;
+          width: 600px;
+          height: 600px;
+          filter: url(#wavy) blur(1px);
+        }
+
+        .circle::before {
+          content: '';
+          position: absolute;
+          top: 100px;
+          left: 100px;
+          right: 100px;
+          bottom: 100px;
+          border: 20px solid #fff;
+          border-radius: 50%;
+          box-shadow: 0 0 50px #00f, inset 0 0 50px #00f;
+          -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0002);
+          animation: animate 5s linear infinite;
+        }
+
+        .circle::after {
+          content: '';
+          position: absolute;
+          top: 100px;
+          left: 100px;
+          right: 100px;
+          bottom: 100px;
+          border: 20px solid #fff;
+          border-radius: 50%;
+          box-shadow: 0 0 50px #fff, inset 0 0 50px #fff;
+          -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0002);
+        }
+
+        @keyframes animate {
+          0% {
+              box-shadow: 0 0 50px #00f, inset 0 0 50px #00f;
+              filter: hue-rotate(0deg);
+          }
+          20% {
+              box-shadow: 0 0 60px #00f, inset 0 0 50px #00f;
+          }
+          40% {
+              box-shadow: 0 0 40px #00f, inset 0 0 50px #00f;
+          }
+          60% {
+              box-shadow: 0 0 80px #00f, inset 0 0 50px #00f;
+          }
+          80% {
+              box-shadow: 0 0 100px #00f, inset 0 0 50px #00f;
+          }
+          100% {
+              box-shadow: 0 0 50px #00f, inset 0 0 50px #00f;
+              filter: hue-rotate(360deg);
+          }
+        }
+        svg {
+          width: 0;
+          height: 0;
+          display: none;
+        }
+
+        .video-area {
+          height: 100vh;
+          background: #000;
+        }
+
+        .video-area:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, #FF0000, #FF0000, #FF0000, #FF7D00, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF);
+          mix-blend-mode: color;
+          pointer-events: none;
+        }
+
+        video {
+          height: 100%;
+          width: 100%;
+          display: block;
+        }
+
+        .text-area {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding-top: 8px;
+          background-color: transparent;
+          letter-spacing: 3.8px;
+        }
+
+        .text-letter-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .text-letter-wrapper span {
+          opacity: 0;
+          font-size: 28px;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .text-name-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .text-name-wrapper span {
+          opacity: 0;
+          font-size: 24px;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .text-name-wrapper .up {
+          position: relative;
+          top: 1px;
+          font-size: 28px;
+          font-weight: bold;
+          color: rgb(222, 41, 16);
+        }
+
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="circle-area">
+      <div class="circle">
+      </div>
+    </div>
+    <div class="video-area">
+      <video src="../assets/video/smoke.mp4" autoplay muted>
+      </video>
+    </div>
+    <div class="text-area">
+      <div class="text-letter-wrapper">
+        <span>H</span>
+        <span>E</span>
+        <span>L</span>
+        <span>L</span>
+        <span>O</span>
+        <span>&nbsp;</span>
+        <span>W</span>
+        <span>O</span>
+        <span>R</span>
+        <span>L</span>
+        <span>D</span>
+      </div>
+      <div class="text-name-wrapper">
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>F</span>
+        <span>r</span>
+        <span>a</span>
+        <span>n</span>
+        <span>k</span>
+        <span></span>
+        <span class="up">S</span>
+        <span class="up">t</span>
+        <span class="up">a</span>
+        <span class="up">r</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </div>
+    </div>
+  </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+      const timeline1 = gsap.timeline()
+      const timeline2 = gsap.timeline()
+      timeline1.staggerFromTo('.text-letter-wrapper span', .5, {
+        opacity: 0,
+        x: -3
+      }, {
+        opacity: 1,
+        x: 0,
+        delay: 2,
+      }, .18)
+      timeline2.staggerFromTo('.text-name-wrapper span', .5, {
+        opacity: 0,
+        x: -3
+      }, {
+        opacity: 1,
+        x: 0,
+        delay: 2,
+      }, .18)
+    </script>
+</body>
+
+</html>
