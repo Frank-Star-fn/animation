@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>文字下落</title>
+
+    <style>
+      .no-select {
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none;    /* Firefox */
+        -ms-user-select: none;     /* Internet Explorer/Edge */
+        user-select: none;         /* Standard syntax */
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        box-sizing: border-box;
+      }
+      .box-container {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        background: rgb(255 228 230);
+      }
+      .box-one {
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        width: 100px;
+        height: 100px;
+        background: rgb(190 18 60);
+      }
+      .box-two {
+        position: absolute;
+        top: 100px;
+        left: 350px;
+        width: 100px;
+        height: 100px;
+        background: rgb(20 184 166);
+      }
+
+      .text-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        background: rgb(204 251 241);
+      }
+      span {
+        font-size: 56px;
+        font-weight: bold;
+        color: rgb(19 78 74);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="text-container no-select">
+      <span>H</span>
+      <span>E</span>
+      <span>L</span>
+      <span>L</span>
+      <span>O</span>
+      <span>&nbsp;</span>
+      <span>W</span>
+      <span>O</span>
+      <span>R</span>
+      <span>L</span>
+      <span>D</span>
+    </div>
+
+    <div class="box-container">
+      <div class="box-one"></div>
+      <div class="box-two"></div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+    <script>
+      const tl1 = gsap.timeline()
+      tl1.to(
+        '.box-one', {
+          x: 100,
+          y: 0,
+          scaleX: 2,
+          rotation: 360, // 180,
+          duration: 1, // 2,
+          delay: 1.5,
+          onComlpete: () => {
+            console.log("end")
+          }
+        }
+      ).from(
+        '.box-two', {
+          x: 100,
+          y: 100,
+          scaleY: 2,
+          rotation: 360, 
+          duration: 1.5, 
+          delay: 1,
+          repeat: 0, // -1, 
+          yoyo: true,
+          backgroundColor: 'rgba(20,184,166,0.3)'
+        }, '>-1'
+      )
+
+      // setTimeout(()=>{
+      //   tl1.pause()
+      // },2500)
+
+      const tl2 = gsap.timeline()
+      tl2.staggerFromTo(
+        'span', .5, {
+          ease: Back.easeOut.config(1.7),
+          opacity: 0,
+          rotation: 180,
+          y: -100
+        }, {
+          ease: Back.easeOut.config(1.7),
+          opacity: 1,
+          rotation: 360,
+          y: 0
+          // y: ()=>{return Math.random()*10}
+
+        }, .1, '+=0',()=>{
+          console.log("tl2:end")
+        }
+      )
+
+    </script>
+  </body>
+</html>
